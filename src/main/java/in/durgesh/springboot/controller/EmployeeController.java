@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import in.durgesh.springboot.helper.ExcelHelper;
@@ -26,6 +27,8 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
+	
+
 	
 	// select count(title) from tutorials;
 		@PostMapping(value = "/upload")
@@ -61,7 +64,7 @@ public class EmployeeController {
 			@RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir,
 			Model model) {
-		int pageSize = 10;
+		int pageSize = 50;
 		
 		Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDir);
 		List<Employee> listEmployees = page.getContent();
