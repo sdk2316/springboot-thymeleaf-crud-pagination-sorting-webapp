@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import in.durgesh.springboot.helper.ExcelHelper;
@@ -29,6 +29,16 @@ public class EmployeeController {
 	
 	
 
+	
+	@GetMapping("/name")
+    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+        List<Employee> listEmployees= employeeService.listAll(keyword);
+        System.out.println(listEmployees);
+        model.addAttribute("listEmployees", listEmployees);
+        model.addAttribute("keyword", keyword);
+         
+        return "index";
+    }
 	
 	// select count(title) from tutorials;
 		@PostMapping(value = "/upload")

@@ -22,6 +22,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
+	 public List<Employee> listAll(String keyword) {
+	        if (keyword != null) {
+	            return employeeRepository.search(keyword);
+	        }
+	        return employeeRepository.findAll();
+	    }
+	
 	 // add excel
 	  public void save(MultipartFile file) {
 	    try {

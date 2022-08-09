@@ -14,4 +14,6 @@ public interface EmployeeService {
 	void deleteEmployeeById(long id);
 	Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 	 public void save(MultipartFile file);
+	 
+	 public List<Employee> listAll(String keyword);
 }
